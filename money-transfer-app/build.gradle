@@ -1,0 +1,90 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'application'
+    id 'jacoco'
+    id "com.github.johnrengelman.shadow" version '5.1.0'
+}
+
+group = 'com.hodorgeek.mt'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+mainClassName = 'com.hodorgeek.mt.MoneyTransferApplication'
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'src/main/java'
+        }
+    }
+
+    test {
+        java {
+            srcDir 'src/test/java'
+        }
+    }
+}
+
+shadowJar {
+    baseName = 'money-transfer-app'
+    classifier = null
+    version = 1.0
+}
+
+
+dependencies {
+
+    implementation 'com.google.inject:guice:4.2.0'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    implementation 'com.h2database:h2:1.4.197'
+    implementation 'com.sparkjava:spark-core:2.5.5'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.inject.extensions:guice-persist:4.2.0'
+    implementation 'org.hibernate:hibernate-core:5.2.16.Final'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
+    implementation 'org.slf4j:slf4j-simple:1.7.25'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.5.1'
+    testImplementation 'org.junit.vintage:junit-vintage-engine:5.5.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.0.0'
+    testImplementation 'org.assertj:assertj-core:3.10.0'
+
+    testCompile 'io.cucumber:cucumber-java:2.4.0'
+    testCompile 'io.cucumber:cucumber-junit:2.4.0'
+    testCompile 'io.rest-assured:rest-assured:3.0.6'
+}
+
+
+run {
+    if (project.hasProperty("loadData")) {
+        args([true])
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
+}
+
+test {
+    useJUnitPlatform()
+
+    if (project.hasProperty("acceptanceTest")) {
+        exclude '**/*com/*'
+    } else {
+        exclude '**/*featureTest*'
+    }
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
