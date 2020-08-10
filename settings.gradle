@@ -1,2 +1,4 @@
-rootProject.name = 'coding-challenge'
+rootProject.name = 'coding-challenges'
 include 'shopping-cart'
+include 'roman-numeral-converter'
+
