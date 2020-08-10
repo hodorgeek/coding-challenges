@@ -2,3 +2,5 @@ rootProject.name = 'coding-challenges'
 include 'shopping-cart'
 include 'roman-numeral-converter'
 include 'money-transfer-app'
+include 'carrom-clean-strike'
+

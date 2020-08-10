@@ -12,8 +12,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-import static com.hodorgeek.mt.app.DataLoader.AccountBuilder.*;
-import static com.hodorgeek.mt.app.DataLoader.CustomerBuilder.*;
+import static com.hodorgeek.mt.app.DataLoader.AccountBuilder.anAccount;
+import static com.hodorgeek.mt.app.DataLoader.CustomerBuilder.aCustomer;
 
 public class DataLoader {
 

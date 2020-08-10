@@ -21,8 +21,8 @@ Feature: Customers / Accounts REST API
     When customer requests GET /customers/<ShamBhandId>
     Then response status is 200
     And response includes the following customer
-      | firstName | Sham     |
-      | lastName  | Bhand    |
+      | firstName | Sham  |
+      | lastName  | Bhand |
 
   Scenario: Retrieving non existing customer
     Given system contains following customers
@@ -32,7 +32,7 @@ Feature: Customers / Accounts REST API
     When customer requests GET /customers/<NonExistingId>
     Then response status is 404
     And response includes the following message
-      | statusCode | 404                                             |
+      | statusCode | 404                                               |
       | message    | customer with id: <NonExistingId> cannot be found |
 
   Scenario: Retrieving all accounts for given customer
@@ -60,7 +60,7 @@ Feature: Customers / Accounts REST API
     When customer requests GET /customers/<ShamBhandId>/accounts/<ShamBhandAccountId>
     Then response status is 200
     And response includes the following account
-      | balance   | 10000.00 |
+      | balance | 10000.00 |
 
   Scenario: Retrieving non existing account for given customer
     Given system contains following customers
